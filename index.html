@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="robots" content="noindex, nofollow">
+<title>Kong × The Walt Disney Company — API Platform Brief</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Funnel+Sans:wght@300..800&family=JetBrains+Mono:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* =============================================
+     KONG BRAND  (per @kong/design-tokens · electric-lime theme)
+     Lime #CCFF00 · Night #070807 · Surface #242824 · Text #F1F3F1
+     Font: Funnel Sans · Mono: JetBrains Mono
+     DISNEY ACCENT  Blue #0063E5 · Castle #113CCF · Night #040714
+     ============================================= */
+  :root {
+    --k-lime:      #CCFF00;
+    --k-lime-dim:  rgba(204,255,0,0.12);
+    --k-lime-line: rgba(204,255,0,0.28);
+    --k-night:     #070807;
+    --k-night-2:   #0D0F0D;
+    --k-surface:   #242824;
+    --k-surface-2: #3D443D;
+    --k-border:    #4E594E;
+    --k-text:      #F1F3F1;
+    --k-text-mid:  #9DA99D;
+    --k-text-dim:  #697769;
+    --k-blue:      #0044F4;
+
+    --d-blue:      #0063E5;
+    --d-castle:    #113CCF;
+    --d-night:     #040714;
+
+    --page:        #F9FBF9;
+    --card:        #FFFFFF;
+    --ink:         #0D0F0D;
+    --ink-mid:     #4A524A;
+    --ink-dim:     #7A857A;
+    --line:        #E3E8E3;
+    --line-soft:   #F1F3F1;
+
+    --font: 'Funnel Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font); background: var(--page); color: var(--ink); -webkit-font-smoothing: antialiased; }
+  a { color: inherit; }
+
+  /* ── Header ─────────────────────────────── */
+  .header {
+    background: var(--k-night);
+    padding: 16px 48px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 1px solid var(--k-surface);
+  }
+  .header-left { display: flex; align-items: center; gap: 20px; }
+  .kong-logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    text-decoration: none;
+  }
+  .kong-logo img { width: 30px; height: 30px; display: block; border-radius: 4px; }
+  .kong-logo span {
+    font-size: 22px;
+    font-weight: 800;
+    color: var(--k-text);
+    letter-spacing: -0.5px;
+    line-height: 1;
+  }
+  .divider { width: 1px; height: 30px; background: var(--k-surface-2); }
+  .built-for {
+    font-family: var(--mono);
+    font-size: 10px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--k-text-dim);
+    margin-bottom: 3px;
+  }
+  .prospect-brand {
+    font-size: 15px;
+    font-weight: 700;
+    color: #6EA8FF;
+    letter-spacing: -0.2px;
+    line-height: 1;
+  }
+  .prospect-brand b { color: #fff; font-weight: 700; }
+
+  .trust-badges { display: flex; gap: 8px; }
+  .badge {
+    padding: 5px 10px;
+    border-radius: 4px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    border: 1px solid;
+  }
+  .badge-lime { background: var(--k-lime-dim); color: var(--k-lime); border-color: var(--k-lime-line); }
+  .badge-dim  { background: rgba(255,255,255,0.03); color: var(--k-text-mid); border-color: var(--k-surface-2); }
+
+  /* ── Hero ───────────────────────────────── */
+  .hero {
+    position: relative;
+    background:
+      radial-gradient(1000px 500px at 85% -10%, rgba(0,99,229,0.22), transparent 60%),
+      radial-gradient(700px 400px at 10% 110%, rgba(204,255,0,0.10), transparent 60%),
+      linear-gradient(160deg, var(--k-night) 0%, var(--k-night-2) 55%, #0A0E1A 100%);
+    padding: 72px 48px 56px;
+    border-bottom: 2px solid var(--k-lime);
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(255,255,255,0.035) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(255,255,255,0.035) 1px, transparent 1px);
+    background-size: 48px 48px;
+    mask-image: radial-gradient(800px 500px at 30% 40%, #000 30%, transparent 100%);
+    pointer-events: none;
+  }
+  .hero > * { position: relative; }
+  .hero-eyebrow {
+    font-family: var(--mono);
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.18em;
+    color: var(--k-lime);
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .hero-eyebrow::before { content: ''; width: 28px; height: 1px; background: var(--k-lime); }
+  .hero h1 {
+    font-size: clamp(36px, 4.4vw, 56px);
+    font-weight: 800;
+    color: var(--k-text);
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+    max-width: 820px;
+    margin-bottom: 20px;
+  }
+  .hero h1 span { color: var(--k-lime); }
+  .hero-sub {
+    font-size: 18px;
+    color: var(--k-text-mid);
+    max-width: 680px;
+    line-height: 1.6;
+    margin-bottom: 40px;
+  }
+  .hero-sub b { color: var(--k-text); font-weight: 600; }
+
+  .stats-bar {
+    display: flex;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--k-surface-2);
+    border-radius: 8px;
+    overflow: hidden;
+    max-width: 980px;
+    backdrop-filter: blur(6px);
+  }
+  .stat { flex: 1; padding: 20px 24px; border-right: 1px solid var(--k-surface-2); }
+  .stat:last-child { border-right: none; }
+  .stat-num {
+    font-size: 30px;
+    font-weight: 800;
+    color: var(--k-text);
+    line-height: 1;
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+    font-variant-numeric: tabular-nums;
+  }
+  .stat-num span { color: var(--k-lime); }
+  .stat-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    color: var(--k-text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    line-height: 1.4;
+  }
+
+  /* ── Platform band (products · security · signals) ── */
+  .platform {
+    background: var(--k-night-2);
+    border-bottom: 1px solid var(--k-surface);
+    padding: 48px 48px 40px;
+  }
+  .platform-inner { max-width: 1200px; margin: 0 auto; }
+  .platform-eyebrow {
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--k-text-dim); margin-bottom: 18px; display: flex; align-items: center; gap: 12px;
+  }
+  .platform-eyebrow::after { content: ''; flex: 1; height: 1px; background: var(--k-surface); }
+  .product-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-bottom: 20px; }
+  .product-card {
+    background: rgba(255,255,255,0.025);
+    border: 1px solid var(--k-surface-2);
+    border-radius: 10px;
+    padding: 24px;
+    display: flex; flex-direction: column;
+    transition: border-color 0.2s, background 0.2s;
+  }
+  .product-card:hover { border-color: var(--k-border); background: rgba(255,255,255,0.04); }
+  .product-name {
+    font-size: 16px; font-weight: 700; letter-spacing: -0.01em; margin-bottom: 10px;
+    display: flex; align-items: center; gap: 9px;
+  }
+  .product-name::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: currentColor; box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 18%, transparent); }
+  .pc-lime   { color: var(--k-lime); }
+  .pc-teal   { color: #2DD4BF; }
+  .pc-violet { color: #C084FC; }
+  .product-desc { font-size: 14px; color: var(--k-text-mid); line-height: 1.55; margin-bottom: 16px; }
+  .product-desc b { color: var(--k-text); font-weight: 600; }
+  .product-bullets { list-style: none; margin: 0 0 20px; padding: 0; display: grid; gap: 7px; }
+  .product-bullets li { font-size: 13px; color: var(--k-text-mid); line-height: 1.45; padding-left: 14px; position: relative; }
+  .product-bullets li::before { content: '›'; position: absolute; left: 0; top: -1px; color: var(--k-text-dim); font-weight: 700; }
+  .product-link {
+    margin-top: auto; align-self: flex-start;
+    font-family: var(--mono); font-size: 11.5px; font-weight: 600; letter-spacing: 0.02em;
+    text-decoration: none; padding: 8px 12px; border-radius: 5px; border: 1px solid currentColor;
+    transition: background 0.2s;
+  }
+  .product-link:hover { background: rgba(255,255,255,0.06); }
+
+  .security {
+    border: 1px solid var(--k-surface-2);
+    border-left: 3px solid var(--k-lime);
+    border-radius: 8px;
+    padding: 18px 22px;
+    background: rgba(255,255,255,0.02);
+    margin-bottom: 16px;
+  }
+  .security-title { font-size: 14px; font-weight: 700; color: var(--k-text); margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+  .security-text { font-size: 13.5px; color: var(--k-text-mid); line-height: 1.55; max-width: 980px; margin-bottom: 12px; }
+  .security-text b { color: var(--k-text); font-weight: 600; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chips .chip { padding: 5px 11px; font-size: 10.5px; }
+
+  .signals {
+    display: flex; flex-wrap: wrap;
+    border: 1px solid var(--k-surface-2); border-radius: 8px; overflow: hidden;
+    background: rgba(255,255,255,0.02);
+  }
+  .signal {
+    flex: 1 1 auto; padding: 14px 18px; border-right: 1px solid var(--k-surface-2);
+    font-size: 13px; color: var(--k-text-mid); white-space: nowrap;
+  }
+  .signal:last-child { border-right: none; }
+  .signal b { color: var(--k-text); font-weight: 800; font-size: 15px; margin-right: 4px; font-variant-numeric: tabular-nums; }
+
+  /* ── Per-tab summary bar ────────────────── */
+  .summary {
+    margin-top: 28px;
+    display: grid; grid-template-columns: 1.3fr 1fr 1fr;
+    background: var(--k-night);
+    border: 1px solid var(--k-surface-2);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  .summary-cell { padding: 22px 24px; border-right: 1px solid var(--k-surface-2); }
+  .summary-cell:last-child { border-right: none; }
+  .summary-label {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+    color: var(--k-text-dim); margin-bottom: 10px;
+  }
+  .summary-text { font-size: 14.5px; color: var(--k-text); line-height: 1.5; font-weight: 500; }
+  .summary-text.dim { color: var(--k-text-mid); font-weight: 400; }
+  .summary-text b { color: var(--k-lime); font-weight: 700; }
+  .summary-start { font-size: 14px; color: var(--k-text-mid); line-height: 1.5; }
+  .summary-start b { color: var(--k-text); font-weight: 600; display: block; margin-bottom: 2px; }
+  .summary-start .step { font-family: var(--mono); font-size: 10.5px; color: var(--k-lime); letter-spacing: 0.08em; }
+
+  /* ── Tabs ───────────────────────────────── */
+  .tabs-wrapper {
+    background: #fff;
+    border-bottom: 1px solid var(--line);
+    position: sticky;
+    top: 63px;
+    z-index: 90;
+  }
+  .tabs { display: flex; padding: 0 48px; overflow-x: auto; scrollbar-width: none; }
+  .tabs::-webkit-scrollbar { display: none; }
+  .tab-btn {
+    padding: 16px 22px;
+    font-family: var(--font);
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ink-mid);
+    border: none;
+    background: none;
+    cursor: pointer;
+    border-bottom: 3px solid transparent;
+    white-space: nowrap;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .tab-btn:hover { color: var(--ink); }
+  .tab-btn.active { color: var(--ink); border-bottom-color: var(--k-lime); font-weight: 700; }
+
+  /* ── Content ────────────────────────────── */
+  .content { padding: 56px 48px 24px; max-width: 1200px; margin: 0 auto; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; animation: fade 0.35s ease; }
+  @keyframes fade { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: none; } }
+
+  .panel-header { margin-bottom: 40px; }
+  .panel-kicker {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--d-blue);
+    margin-bottom: 12px;
+    font-weight: 500;
+  }
+  .panel-header h2 {
+    font-size: 34px;
+    font-weight: 800;
+    color: var(--ink);
+    letter-spacing: -0.025em;
+    margin-bottom: 12px;
+    line-height: 1.1;
+  }
+  .panel-header p { font-size: 16.5px; color: var(--ink-mid); max-width: 740px; line-height: 1.65; }
+  .panel-header p b { color: var(--ink); font-weight: 600; }
+
+  .force-multiplier {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    background: var(--k-night);
+    border: 1px solid var(--k-surface-2);
+    border-radius: 8px;
+    padding: 12px 20px 12px 16px;
+    margin-top: 20px;
+  }
+  .fm-num { font-size: 30px; font-weight: 800; color: var(--k-lime); letter-spacing: -0.02em; line-height: 1; }
+  .fm-label { font-size: 13.5px; color: var(--k-text-mid); line-height: 1.35; }
+  .fm-label b { color: var(--k-text); font-weight: 600; display: block; }
+
+  .section-label {
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    margin: 44px 0 16px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+
+  /* ── Job cards ──────────────────────────── */
+  .cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .job-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 20px;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+    display: flex; flex-direction: column;
+  }
+  .job-card:hover { box-shadow: 0 8px 24px rgba(13,15,13,0.07); border-color: #CBD3CB; transform: translateY(-2px); }
+  .job-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .job-dept {
+    font-family: var(--mono);
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--d-blue);
+  }
+  .job-live {
+    font-family: var(--mono);
+    font-size: 9.5px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--ink-dim);
+    display: inline-flex; align-items: center; gap: 5px;
+  }
+  .job-live::before { content: ''; width: 5px; height: 5px; border-radius: 50%; background: #16A34A; }
+  .job-title { font-size: 15.5px; font-weight: 700; color: var(--ink); line-height: 1.3; margin-bottom: 6px; letter-spacing: -0.01em; }
+  .job-title a { text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .job-title a:hover { border-bottom-color: var(--d-blue); color: var(--d-blue); }
+  .job-loc { font-size: 12.5px; color: var(--ink-dim); margin-bottom: 12px; }
+  .job-pain {
+    font-size: 13.5px;
+    color: var(--ink-mid);
+    line-height: 1.55;
+    padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+    margin-top: auto;
+  }
+  .job-pain strong { color: var(--ink); font-weight: 600; }
+  .job-pain q { font-style: italic; color: var(--ink-mid); }
+  .job-card.highlight { border-color: var(--k-lime); box-shadow: 0 0 0 3px var(--k-lime-dim); }
+  .job-card.highlight .job-live::before { background: var(--k-lime); box-shadow: 0 0 0 3px var(--k-lime-dim); }
+
+  /* ── Use case cards ─────────────────────── */
+  .usecase-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+  .usecase-card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 24px;
+    transition: box-shadow 0.2s, border-color 0.2s, transform 0.2s;
+    position: relative; overflow: hidden;
+  }
+  .usecase-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: var(--k-lime); transform: scaleX(0); transform-origin: left; transition: transform 0.4s ease;
+  }
+  .usecase-card:hover { box-shadow: 0 8px 24px rgba(13,15,13,0.07); border-color: #CBD3CB; transform: translateY(-2px); }
+  .usecase-card:hover::before { transform: scaleX(1); }
+  .usecase-product {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-family: var(--mono);
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    padding: 4px 9px;
+    border-radius: 4px;
+    margin-bottom: 14px;
+  }
+  .usecase-product::before { content: ''; width: 6px; height: 6px; border-radius: 1px; background: currentColor; }
+  .p-gateway  { background: #0D0F0D; color: var(--k-lime); }
+  .p-konnect  { background: #E8EEFF; color: #0034C4; }
+  .p-mesh     { background: #E3F7F2; color: #0B7A5F; }
+  .p-ai       { background: #F3E8FF; color: #6D28D9; }
+  .p-insomnia { background: #EDE9FE; color: #5B21B6; }
+  .p-event    { background: #FFF1E6; color: #B4530A; }
+  .p-portal   { background: #E7F6EA; color: #15803D; }
+  .p-identity { background: #FDECEC; color: #B91C1C; }
+  .usecase-title { font-size: 17px; font-weight: 700; color: var(--ink); margin-bottom: 8px; letter-spacing: -0.012em; line-height: 1.3; }
+  .usecase-desc { font-size: 14.5px; color: var(--ink-mid); line-height: 1.6; }
+  .usecase-outcome {
+    margin-top: 14px; padding-top: 12px;
+    border-top: 1px solid var(--line-soft);
+    font-size: 13.5px; font-weight: 600; color: var(--ink);
+    display: flex; gap: 8px; align-items: baseline;
+  }
+  .usecase-outcome::before { content: '→'; color: #7A9A00; font-weight: 800; }
+
+  /* ── Proof strip ────────────────────────── */
+  .proof {
+    background: var(--k-night);
+    border-top: 1px solid var(--k-surface);
+    padding: 64px 48px;
+    margin-top: 72px;
+  }
+  .proof-inner { max-width: 1200px; margin: 0 auto; }
+  .proof-head { display: flex; align-items: flex-end; justify-content: space-between; gap: 24px; flex-wrap: wrap; margin-bottom: 32px; }
+  .proof-eyebrow {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--k-lime); margin-bottom: 12px; display: flex; align-items: center; gap: 12px;
+  }
+  .proof-eyebrow::before { content: ''; width: 24px; height: 1px; background: var(--k-lime); }
+  .proof-head h2 { font-size: 30px; font-weight: 800; color: var(--k-text); letter-spacing: -0.025em; line-height: 1.1; max-width: 640px; }
+  .proof-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+  .chip {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.02em;
+    color: var(--k-text-mid); border: 1px solid var(--k-surface-2); border-radius: 100px; padding: 6px 12px;
+  }
+  .chip b { color: var(--k-text); font-weight: 600; }
+  .quote-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+  .quote-card {
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--k-surface-2);
+    border-radius: 10px;
+    padding: 26px 26px 22px;
+    display: flex; flex-direction: column;
+  }
+  .quote-stat { font-size: 34px; font-weight: 800; color: var(--k-lime); letter-spacing: -0.02em; line-height: 1; margin-bottom: 6px; }
+  .quote-stat-label { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--k-text-dim); margin-bottom: 18px; }
+  .quote-text { font-size: 15px; color: var(--k-text); line-height: 1.55; margin-bottom: 18px; }
+  .quote-attr { font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--k-text-mid); border-top: 1px solid var(--k-surface); padding-top: 14px; margin-top: auto; display: flex; justify-content: space-between; gap: 8px; }
+  .quote-attr b { color: var(--k-text); font-weight: 600; }
+
+  /* ── Footer / CTA ───────────────────────── */
+  .footer {
+    background: var(--k-night);
+    border-top: 1px solid var(--k-surface);
+    padding: 48px 48px 28px;
+  }
+  .footer-inner { max-width: 1200px; margin: 0 auto; }
+  .footer-cta-row { display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; }
+  .footer-left { color: var(--k-text-mid); font-size: 14.5px; line-height: 1.5; max-width: 620px; }
+  .footer-left strong { color: var(--k-text); display: block; font-size: 22px; font-weight: 800; letter-spacing: -0.02em; margin-bottom: 6px; }
+  .footer-cta {
+    background: var(--k-lime);
+    color: var(--k-night);
+    padding: 14px 28px;
+    border-radius: 6px;
+    font-size: 14.5px;
+    font-weight: 800;
+    text-decoration: none;
+    letter-spacing: -0.005em;
+    display: inline-flex; align-items: center; gap: 10px;
+    transition: transform 0.2s, box-shadow 0.2s;
+    white-space: nowrap;
+  }
+  .footer-cta:hover { transform: translateY(-1px); box-shadow: 0 10px 30px rgba(204,255,0,0.25); }
+  .footer-meta {
+    margin-top: 36px; padding-top: 20px; border-top: 1px solid var(--k-surface);
+    display: flex; justify-content: space-between; gap: 24px; flex-wrap: wrap;
+    font-family: var(--mono); font-size: 10.5px; letter-spacing: 0.04em; color: var(--k-text-dim); line-height: 1.6;
+  }
+  .footer-meta a { color: var(--k-text-mid); text-decoration: none; border-bottom: 1px solid var(--k-surface-2); }
+
+  @media (max-width: 1100px) {
+    .quote-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 1100px) {
+    .product-row { grid-template-columns: 1fr; }
+    .summary { grid-template-columns: 1fr; }
+    .summary-cell { border-right: none; border-bottom: 1px solid var(--k-surface-2); }
+    .summary-cell:last-child { border-bottom: none; }
+    .signal { white-space: normal; flex: 1 1 50%; border-bottom: 1px solid var(--k-surface-2); }
+  }
+  @media (max-width: 900px) {
+    .platform { padding: 36px 24px 28px; }
+    .cards-grid, .usecase-grid { grid-template-columns: 1fr; }
+    .hero { padding: 48px 24px 36px; }
+    .hero h1 { font-size: 34px; }
+    .stats-bar { flex-wrap: wrap; }
+    .stat { flex: 1 1 50%; border-bottom: 1px solid var(--k-surface-2); }
+    .content { padding: 36px 24px 16px; }
+    .tabs { padding: 0 12px; }
+    .tabs-wrapper { top: 61px; }
+    .header { padding: 14px 20px; }
+    .trust-badges { display: none; }
+    .brand-sub { display: none; }
+    .proof, .footer { padding-left: 24px; padding-right: 24px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="header">
+  <div class="header-left">
+    <a class="kong-logo" href="https://konghq.com" target="_blank" rel="noopener">
+      <img src="images/kong-mark.png" alt="Kong">
+      <span>Kong</span>
+    </a>
+    <div class="divider"></div>
+    <div>
+      <div class="built-for">Prepared for</div>
+      <div class="prospect-brand"><b>The Walt Disney Company</b><span class="brand-sub"> · Disney+ · Hulu · ESPN · Experiences</span></div>
+    </div>
+  </div>
+  <div class="trust-badges">
+    <span class="badge badge-lime">Gartner MQ Leader · 6 yrs</span>
+    <span class="badge badge-dim">Forrester Wave Leader</span>
+    <span class="badge badge-dim">PCI DSS 4.0</span>
+    <span class="badge badge-dim">1T+ API calls / day</span>
+  </div>
+</header>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-eyebrow">Kong × The Walt Disney Company · API platform brief</div>
+  <h1>One API platform for Disney+, Hulu, ESPN, and <span>the parks.</span></h1>
+  <p class="hero-sub">
+    Disney is merging Hulu's backend onto Disney+ for a <b>unified app by end of 2026</b>, running ESPN's new
+    direct-to-consumer service through the same shared services, and operating <b>400+ digital products</b>
+    across Disney Experiences — while the company takes ~1,000 roles out and asks technology to
+    <b>fund itself through efficiency</b>. Three separately-evolved API estates. One place to govern them.
+  </p>
+  <div class="stats-bar">
+    <div class="stat">
+      <div class="stat-num">196<span>M</span></div>
+      <div class="stat-label">Disney+ &amp; Hulu subscriptions<br>(last reported, Q4 FY25)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">164<span>M</span></div>
+      <div class="stat-label">Ad-supported monthly<br>active users</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">145<span>M</span></div>
+      <div class="stat-label">Park visitors worldwide<br>(TEA 2024)</div>
+    </div>
+    <div class="stat">
+      <div class="stat-num">47<span>K</span></div>
+      <div class="stat-label">Live events / year<br>on ESPN DTC</div>
+    </div>
+  </div>
+</section>
+
+<!-- Platform band -->
+<section class="platform">
+  <div class="platform-inner">
+    <div class="platform-eyebrow">The Kong platform · what each piece does</div>
+    <div class="product-row">
+      <div class="product-card">
+        <div class="product-name pc-lime">Kong Gateway + Konnect</div>
+        <p class="product-desc">The API gateway — open-source core, <b>137,850 req/s at 3.82 ms p95</b> per node — plus Konnect, the SaaS control plane that manages every gateway, catalog, portal, and policy across clouds and teams.</p>
+        <ul class="product-bullets">
+          <li>Auth, rate limiting, transformations, caching as declarative plugins (decK / Terraform)</li>
+          <li>Data planes in your AWS, Azure, GCP, ECS, Kubernetes, or on-prem — traffic never leaves your network</li>
+          <li>Service Catalog, Dev Portal, Advanced Analytics, Metering &amp; Billing in one tenant</li>
+        </ul>
+        <a class="product-link pc-lime" href="https://konghq.com/products/kong-konnect" target="_blank" rel="noopener">Explore Konnect →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-name pc-teal">Kong Mesh + Ingress Controller</div>
+        <p class="product-desc">Zero-trust service-to-service networking that runs on <b>ECS, VMs, and Kubernetes at the same time</b>, and a Kubernetes Gateway API ingress that shares the same control plane and plugins.</p>
+        <ul class="product-bullets">
+          <li>mTLS, traffic policy, and observability across hybrid and multi-zone estates (Kuma / Envoy)</li>
+          <li>GitOps-native ingress — routes and policies as CRDs, reviewed in PRs</li>
+          <li>Mesh and gateway telemetry into Datadog, Grafana, Splunk via OpenTelemetry</li>
+        </ul>
+        <a class="product-link pc-teal" href="https://konghq.com/products/kong-mesh" target="_blank" rel="noopener">Explore Kong Mesh →</a>
+      </div>
+      <div class="product-card">
+        <div class="product-name pc-violet">Kong AI Gateway</div>
+        <p class="product-desc">One governed front door for every LLM, MCP tool, and agent — <b>OpenAI, Anthropic, Bedrock, Azure, self-hosted</b> — with the controls security, finance, and legal ask for before AI hits production.</p>
+        <ul class="product-bullets">
+          <li>Multi-provider routing, failover, semantic caching, and A/B across models</li>
+          <li>Prompt guards, PII sanitization, token &amp; cost rate limits, full request/response audit</li>
+          <li>Agent Gateway + MCP Registry: govern agent-to-agent and tool traffic from the same plane</li>
+        </ul>
+        <a class="product-link pc-violet" href="https://konghq.com/products/kong-ai-gateway" target="_blank" rel="noopener">Explore AI Gateway →</a>
+      </div>
+    </div>
+
+    <div class="security">
+      <div class="security-title">🔒 Deployment, security &amp; compliance</div>
+      <p class="security-text">Kong's data planes run <b>inside Disney's own cloud accounts and network boundaries</b>; Konnect holds configuration and analytics, never guest or subscriber traffic. The gateway core is open source (Apache 2.0), so there's no black box in the request path — and the same policies apply whether the workload is Disney+'s ECS estate, Ad Platforms' Kubernetes, or the SAP core in the parks.</p>
+      <div class="chips">
+        <span class="chip">Data planes in your VPC</span>
+        <span class="chip">PCI DSS 4.0 attested (Konnect &amp; Cloud Gateways)</span>
+        <span class="chip">SOC 2 Type II</span>
+        <span class="chip">FIPS 140-2 builds available</span>
+        <span class="chip">OIDC · Okta · Ping · SAML SSO</span>
+        <span class="chip">Open-source core · Apache 2.0</span>
+      </div>
+    </div>
+
+    <div class="signals">
+      <div class="signal"><b>16</b> open engineering &amp; architect roles</div>
+      <div class="signal"><b>6</b> technology domains</div>
+      <div class="signal"><b>3</b> streaming backends → 1</div>
+      <div class="signal"><b>1</b> posting already names Kong</div>
+      <div class="signal"><b>End 2026</b> unified-app deadline</div>
+    </div>
+  </div>
+</section>
+
+<!-- Tabs -->
+<div class="tabs-wrapper">
+  <div class="tabs">
+    <button class="tab-btn active" onclick="showTab('streaming', this)">Streaming Platform</button>
+    <button class="tab-btn" onclick="showTab('parks', this)">Parks &amp; Commerce</button>
+    <button class="tab-btn" onclick="showTab('ads', this)">Ad Platforms</button>
+    <button class="tab-btn" onclick="showTab('ai', this)">AI &amp; Agents</button>
+    <button class="tab-btn" onclick="showTab('cloud', this)">Cloud &amp; Reliability</button>
+    <button class="tab-btn" onclick="showTab('identity', this)">Identity &amp; Enterprise</button>
+  </div>
+</div>
+
+<!-- Content -->
+<div class="content">
+
+  <!-- STREAMING -->
+  <div class="tab-panel active" id="tab-streaming">
+    <div class="panel-header">
+      <div class="panel-kicker">Disney Entertainment &amp; ESPN Product &amp; Technology</div>
+      <h2>Three streaming backends are becoming one. The API layer has to get there first.</h2>
+      <p>Disney+ runs Scala microservices on Amazon ECS behind a homegrown ingress layer. Hulu arrived with its own
+        PaaS — <b>1.5M requests/sec, 83,000 containers, 33 ECS clusters</b> at last public count. ESPN's DTC service
+        launched in August 2025 on the shared stack. Now Media Engineering is being asked to
+        <b>"unify ingest, processing, metadata, ads, distribution, and playback"</b> across all three — and to do it
+        <b>"without direct authority."</b> That's a governance problem, not a coding problem.</p>
+      <div class="force-multiplier">
+        <div class="fm-num">99.99%</div>
+        <div class="fm-label"><b>availability, +70% API performance</b>Sky Italia after moving 200+ pay-TV APIs to Kong</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Product Engineering</span><span class="job-live">Open · Jun 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/glendale/distinguished-product-software-engineer-vp-level/391/95146178752" target="_blank" rel="noopener">Distinguished Product Software Engineer (VP Level)</a></div>
+        <div class="job-loc">📍 Glendale, CA</div>
+        <div class="job-pain">Owns platforms for ESPN, ABC News, and the <strong>cross-cutting Developer Platform</strong>. A VP-level hire to build a shared developer surface means there isn't one today — every product team integrates identity, commerce, and personalization its own way.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Media Engineering</span><span class="job-live">Open · May 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/new-york/principal-software-engineer/391/95311057920" target="_blank" rel="noopener">Principal Software Engineer / Architect, Media Engineering</a></div>
+        <div class="job-loc">📍 New York / Santa Monica</div>
+        <div class="job-pain">Must <strong>"establish architectural patterns that unify"</strong> media pipelines across Disney+, Hulu, and ESPN — Kinesis, Kafka, SNS/SQS, DynamoDB — and influence <q>multiple teams and organizations without direct authority.</q> Standards with no enforcement point.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">COPEX · Backend SRE</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/new-york/software-engineer-ii-site-reliability-engineer/391/88060236336" target="_blank" rel="noopener">Software Engineer II — Site Reliability (COPEX)</a></div>
+        <div class="job-loc">📍 New York</div>
+        <div class="job-pain">Team charter: <strong>"high-throughput services for API delivery"</strong> powering Hulu and Disney+, focused on <q>high availability, low latency, massive throughput</q> and cloud cost. Disney is hand-building its API delivery tier — the thing a gateway is.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Kong Konnect</span>
+        <div class="usecase-title">One control plane over Disney+, Hulu, and ESPN — without a re-org</div>
+        <div class="usecase-desc">Konnect is a SaaS control plane; data planes run wherever the services already are — ECS, Kubernetes, VMs, multiple AWS accounts. Each streaming org keeps its runtimes and ownership. Architecture gets a single place to set auth, rate limits, and observability policy that actually applies everywhere.</div>
+        <div class="usecase-outcome">Governance "without direct authority" becomes policy-as-code</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-gateway">Kong Gateway</span>
+        <div class="usecase-title">Retire the hand-built API delivery tier</div>
+        <div class="usecase-desc">Kong Gateway benchmarks at <b>137,850 requests/sec at 3.82 ms p95</b> on a single node and is declaratively configured (decK, Terraform) — it drops into the IaC pipeline COPEX already owns. Stop maintaining bespoke ALB + health-check + routing code across three platforms; run one gateway everywhere.</div>
+        <div class="usecase-outcome">SRE headcount goes to reliability, not plumbing</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-portal">Service Catalog + Dev Portal</span>
+        <div class="usecase-title">The Developer Platform the VP role is being hired to build</div>
+        <div class="usecase-desc">Konnect Service Catalog becomes the system of record for every internal API across sports, news, and streaming — owners, dependencies, scorecards, auto-discovered from the gateways and existing AWS API Gateway deployments. The Dev Portal gives product teams self-service access to identity, commerce, and personalization APIs.</div>
+        <div class="usecase-outcome">Every Disney+/Hulu/ESPN API discoverable in one catalog</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-event">Kong Event Gateway</span>
+        <div class="usecase-title">Govern Kinesis and Kafka like REST</div>
+        <div class="usecase-desc">Disney+ ingests <b>billions of events per hour</b> through Kinesis; Media Engineering is standardizing on Kafka-style event contracts across pipelines. Event Gateway puts auth, schema enforcement, and per-team observability in front of the streams — the same policy model you use for HTTP.</div>
+        <div class="usecase-outcome">Unified media pipeline with enforced event contracts</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">Media Engineering and the Developer Platform get an <b>enforcement point</b> for the standards they're being hired to set — without waiting for Hulu, Disney+, and ESPN to reorganize.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">Unified Disney+ / Hulu app (end-2026) · ESPN DTC live-event traffic · Disney+ "Live" hub · 196M subscriptions</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>Konnect in front of one shared service</b>Identity or commerce API consumed by all three apps; measure p95, error rate, and policy coverage against the homegrown tier.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PARKS & COMMERCE -->
+  <div class="tab-panel" id="tab-parks">
+    <div class="panel-header">
+      <div class="panel-kicker">Disney Experiences Technology &amp; Digital</div>
+      <h2>Lightning Lane opens at 7:00 a.m. ET. Every day. The API tier has to hold.</h2>
+      <p>Disney Experiences runs <b>400+ digital products</b> — My Disney Experience, Genie, Lightning Lane, MagicBand+,
+        mobile order, PhotoPass, DCL — plus partner-facing sales APIs for tickets, resorts, and dining that still speak
+        <b>SOAP alongside REST and GraphQL</b>. In 2025, Lightning Lane and mobile-order outages hit in January, August,
+        October, and November. And a current Celebration, FL posting requires experience with
+        <b>"API management platforms (e.g., Apigee, Kong, Mulesoft)."</b> Kong is already in the vocabulary.</p>
+      <div class="force-multiplier">
+        <div class="fm-num">11×</div>
+        <div class="fm-label"><b>cheaper, 3× faster on 28 billion Black Friday requests</b>MediaMarktSaturn's first peak season on Kong</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card highlight">
+        <div class="job-top"><span class="job-dept">Parks &amp; Resorts</span><span class="job-live">Open · names Kong</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/celebration/sr-software-engineer/391/91057605696" target="_blank" rel="noopener">Sr Software Engineer</a></div>
+        <div class="job-loc">📍 Celebration, FL</div>
+        <div class="job-pain">Requires <strong>"experience with API management platforms (e.g., Apigee, Kong, Mulesoft, or similar)"</strong> plus <q>OAuth, JWT, TLS, and secrets management</q> and Terraform/Helm. Either an incumbent is under review or a platform decision is pending. Highest-signal posting at Disney.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Commerce · Core Sales Platform</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/orlando/senior-software-engineer/391/86962346192" target="_blank" rel="noopener">Senior Software Engineer, Core Sales Platform</a></div>
+        <div class="job-loc">📍 Orlando, FL</div>
+        <div class="job-pain">Delivers the <strong>APIs third parties use to sell Disney tickets, resorts, and dining</strong> — the "one-stop shop" for approved external sellers. Stack lists <q>SOAP &amp; REST and GraphQL</q>, generic <q>API gateways</q>, Harness, AppDynamics, Splunk. Partner onboarding and quotas are bespoke.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Commerce SRE</span><span class="job-live">Open · Aug 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/orlando/sr-mgr-site-reliability-engineer-sre/391/92931574832" target="_blank" rel="noopener">Sr Mgr, Site Reliability Engineering</a></div>
+        <div class="job-loc">📍 Orlando, FL</div>
+        <div class="job-pain">Accountable for <strong>"observability, automation, and operational excellence across commerce platforms"</strong> and for securing funding. Synchronized 7 a.m. booking surges and the 2025 outage record are this role's first problem — and its budget line.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-gateway">Kong Gateway</span>
+        <div class="usecase-title">Shed the 7 a.m. surge at the edge, not in the booking service</div>
+        <div class="usecase-desc">Rate limiting, request queuing, circuit breaking, and upstream health checks run in the gateway — before a Lightning Lane stampede reaches the reservation system. Per-guest and per-partner limits, graceful degradation, and retry policy are configuration, not a code change during an incident.</div>
+        <div class="usecase-outcome">Booking systems see a controlled wave, not a wall</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-portal">Dev Portal + Gateway plugins</span>
+        <div class="usecase-title">Self-service partner APIs for tickets, resorts, and dining</div>
+        <div class="usecase-desc">Give approved travel partners a branded portal to discover the Core Sales APIs, request credentials, and test — with OAuth2 or key auth, per-partner quotas, and usage analytics enforced by Kong. Protocol mediation and request/response transformation keep legacy SOAP consumers working while you converge on REST and GraphQL.</div>
+        <div class="usecase-outcome">Partner onboarding in days; every call attributed</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Kong Konnect</span>
+        <div class="usecase-title">One policy across AWS, Azure, and GCP parks domains</div>
+        <div class="usecase-desc">Disney Experiences' enterprise architects are asked for <q>API-led integration</q> across Commerce, Ticketing, Guest Experience, Hotel, Supply Chain, and Cast tools — on multiple clouds and an SAP core. Konnect is cloud-agnostic by design: the same gateway config, auth, and analytics whether the service sits in AWS, Azure, or on-prem next to SAP.</div>
+        <div class="usecase-outcome">Federated domains, one operating model</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-insomnia">Insomnia + API linting</span>
+        <div class="usecase-title">Versioned APIs and event schemas that don't break the app</div>
+        <div class="usecase-desc">Connected Products is hiring to build <q>clean, versioned event schemas and APIs</q> for My Disney Experience and Hey Disney!. Design-first in Insomnia, lint specs in CI against Konnect governance rules, publish to the catalog — every downstream consumer sees the contract before the deploy.</div>
+        <div class="usecase-outcome">Fewer app-breaking API changes in production</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">Guest-facing surges get <b>absorbed at the edge</b> and partner integrations become self-service — the two things behind most of the 2025 incident record and the Core Sales backlog.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">Lightning Lane &amp; Genie · My Disney Experience · Mobile order · Partner ticket, resort &amp; dining sales · 400+ DXT products</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>Rate-limit and shape one 7 a.m. booking flow</b>Run Kong Gateway alongside the current gateway on a single Lightning Lane or mobile-order endpoint; compare behavior under the next surge.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AD PLATFORMS -->
+  <div class="tab-panel" id="tab-ads">
+    <div class="panel-header">
+      <div class="panel-kicker">Disney Advertising · Ad Platforms</div>
+      <h2>Half of streaming ad revenue is now programmatic. The decision path is an API problem.</h2>
+      <p>Disney Advertising reaches <b>164M ad-supported monthly active users</b>; biddable revenue is up 41% year over
+        year and <b>"almost half of the DTC business is transacted through automated channels."</b> Ad Platforms runs
+        Java/Spring Boot microservices on Kubernetes with Kafka and Kinesis, hand-maintains its API specifications, and
+        is hiring a Distinguished AI Architect to put <b>LLM inference inside a "privacy-safe" real-time decisioning path</b>
+        serving millions of concurrent sessions.</p>
+      <div class="force-multiplier">
+        <div class="fm-num">31×</div>
+        <div class="fm-label"><b>the throughput of Apigee X at 100% success under 30 ms</b>GigaOm API &amp; Microservices Management Benchmark</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Ad Platforms · Architecture</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/santa-monica/principal-software-engineer-architecture-ad-platforms/391/75956688128" target="_blank" rel="noopener">Principal Software Engineer, Architecture — Ad Platforms</a></div>
+        <div class="job-loc">📍 Santa Monica / Glendale, CA</div>
+        <div class="job-pain">Maintains <strong>"architectural documentation… deployment strategies, and API specifications"</strong> for Kubernetes-hosted Spring Boot microservices with Kafka, Kinesis, and SQS in a <q>high throughput, low latency</q> environment. Specs live in docs, not in an enforcement plane.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Ad Platforms · AI</span><span class="job-live">Open · 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/seattle/distinguished-applied-software-engineer-ad-platforms/391/93387874848" target="_blank" rel="noopener">Distinguished Applied Software Engineer — AI Architect</a></div>
+        <div class="job-loc">📍 Seattle, WA</div>
+        <div class="job-pain">"Principal technical visionary" for <strong>Generative AI and LLMs inside real-time ad decisioning</strong> — a <q>scalable, privacy-safe, and intelligent ads platform</q> across <q>millions of concurrent streaming sessions.</q> Model traffic, cost, and PII controls have to exist before the models do.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Ad Platforms · Infrastructure</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/glendale/principal-platform-engineer/391/83821532784" target="_blank" rel="noopener">Principal Platform Engineer — Services, Data &amp; GenAI Tooling</a></div>
+        <div class="job-loc">📍 Glendale, CA</div>
+        <div class="job-pain">Drives <strong>AWS infrastructure, cloud-native CI/CD, and internal tooling</strong> so developers <q>move faster, safer</q>, and explores GenAI to eliminate repetitive work. An internal developer platform with an AI layer — built from parts, today.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-mesh">Kong Ingress Controller</span>
+        <div class="usecase-title">Kubernetes-native ingress for the ad-serving path</div>
+        <div class="usecase-desc">KIC implements the Kubernetes Gateway API and runs Kong Gateway as the ingress for Ad Platforms' clusters — declarative, GitOps-friendly, with the full plugin set (auth, rate limiting, transformations, OpenTelemetry) available as CRDs. Same control plane as the streaming gateways.</div>
+        <div class="usecase-outcome">One ingress standard from ad decisioning to playback</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-ai">Kong AI Gateway</span>
+        <div class="usecase-title">"Privacy-safe" LLM inference, enforced at the gateway</div>
+        <div class="usecase-desc">PII sanitization, prompt guards, token- and cost-based rate limits, and semantic caching sit in front of every model call — OpenAI, Anthropic, Bedrock, or a self-hosted model — with provider failover and A/B routing. Forrester: Kong has <q>more policies for LLM governance than any other vendor</q> in its 2026 Wave.</div>
+        <div class="usecase-outcome">Ship LLM-driven ad experiences with auditable guardrails</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-event">Kong Event Gateway</span>
+        <div class="usecase-title">Kafka and Kinesis under the same governance as the APIs</div>
+        <div class="usecase-desc">Bidding, impression, and measurement streams get authenticated client access, topic-level authorization, schema validation, and per-consumer observability through a Kafka-native proxy — without giving every team direct cluster credentials.</div>
+        <div class="usecase-outcome">Event-driven ad platform, governed like the REST tier</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-insomnia">Insomnia + Service Catalog</span>
+        <div class="usecase-title">API specifications that are enforced, not filed</div>
+        <div class="usecase-desc">Design REST, gRPC, and GraphQL contracts in Insomnia, lint them against Ad Platforms' standards in CI, and publish to Konnect Service Catalog with owners and scorecards. The Principal Architect's documentation burden becomes an automated governance signal.</div>
+        <div class="usecase-outcome">Architectural standards that survive team turnover</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">LLM-driven ad decisioning ships with <b>privacy and cost controls already in the request path</b> — and the API specs the architects maintain become enforced contracts instead of documents.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">164M ad-supported MAUs · Programmatic / biddable revenue (+41% YoY) · Real-time decisioning across millions of concurrent sessions</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>KIC on one ad-serving cluster + AI Gateway on one model call</b>Prove ingress parity and LLM guardrails on a non-critical path before the AI Architect's roadmap depends on them.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- AI & AGENTS -->
+  <div class="tab-panel" id="tab-ai">
+    <div class="panel-header">
+      <div class="panel-kicker">Office of Technology Enablement · Disney Streaming · Imagineering</div>
+      <h2>Disney just became "a major customer of OpenAI." Every one of those API calls needs a front door.</h2>
+      <p>In December 2025 Disney invested <b>$1B in OpenAI</b> and committed to using its APIs across Disney+ and internal
+        tools. DisneyGPT is rolled out to employees; an agentic assistant, J.A.R.V.I.S., is used by <b>2,000+ Imagineers</b>;
+        Sora-generated content lands on Disney+ in 2026. Meanwhile the streaming SRE org is hiring engineers to build
+        <b>agentic systems on GPT-4 and Claude</b> for incident detection. Multiple providers, many teams, no shared
+        control point for cost, tokens, prompts, or data leakage.</p>
+      <div class="force-multiplier">
+        <div class="fm-num">Weeks → days</div>
+        <div class="fm-label"><b>LLM onboarding, 100% centralized AI logging &amp; audit</b>H&amp;M on Kong AI Gateway · 2025 Kong Innovator Award</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Streaming Observability &amp; Insights</span><span class="job-live">Open · Jun 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/glendale/software-engineer-ii-ai-and-observability/391/94962258160" target="_blank" rel="noopener">Software Engineer II — AI and Observability</a></div>
+        <div class="job-loc">📍 Glendale, CA / Seattle, WA</div>
+        <div class="job-pain">Builds <strong>"agentic systems… that transform telemetry, logs, and user signals into automated detection"</strong>, with <q>prompt design, model evaluation, and fine-tuning foundation models (GPT-4, Claude)</q>. Production LLM traffic originating from the SRE org itself — multi-provider by default.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Ad Platforms · AI</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/seattle/ai-architect-distinguished-software-engineer-vp-level/391/87122920656" target="_blank" rel="noopener">AI Architect, Distinguished Software Engineer (VP Level)</a></div>
+        <div class="job-loc">📍 Seattle, WA</div>
+        <div class="job-pain">Guides Disney's <strong>"global AI-enabled transformation"</strong> of Ad Platforms — <q>generative AI machine learning infrastructure, real-time decision engines</q>. A VP-level AI architect implies enterprise-wide model access patterns are being decided now.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Ad Platforms · GenAI Tooling</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/glendale/principal-platform-engineer/391/83821532784" target="_blank" rel="noopener">Principal Platform Engineer — Infrastructure &amp; Tooling for GenAI</a></div>
+        <div class="job-loc">📍 Glendale, CA</div>
+        <div class="job-pain">Chartered to <strong>"explore the use of GenAI to streamline workflows"</strong> for developers across services and data. Internal AI tooling multiplies the number of teams calling LLM APIs — each with its own keys, spend, and prompt hygiene.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-ai">Kong AI Gateway</span>
+        <div class="usecase-title">One endpoint for OpenAI, Anthropic, Bedrock — and whatever comes next</div>
+        <div class="usecase-desc">Teams call one Disney-internal API; the gateway routes to OpenAI under the enterprise agreement, to Claude for the SRE tooling, or to Bedrock and self-hosted models — with semantic load balancing, retries, and provider failover. Swap or add a model without touching application code.</div>
+        <div class="usecase-outcome">Provider leverage, zero vendor lock-in at the app layer</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-ai">AI Gateway · Prompt Guard &amp; PII</span>
+        <div class="usecase-title">Guardrails Disney's brand and legal teams can sign off on</div>
+        <div class="usecase-desc">Semantic Prompt Guard blocks off-policy prompts; PII sanitization scrubs guest and employee data before it leaves the network; every request and response is logged for audit. Character IP, guest data, and cast information get the same treatment whether the caller is DisneyGPT, J.A.R.V.I.S., or an ad-decisioning model.</div>
+        <div class="usecase-outcome">Central, auditable controls across every AI use case</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Konnect Metering &amp; Billing</span>
+        <div class="usecase-title">Token spend by team, product, and model — before the invoice</div>
+        <div class="usecase-desc">Token-based rate limiting and cost governance at the gateway; usage metered per team and product line so Ad Platforms, Streaming, Imagineering, and Enterprise Tech each see — and own — their AI spend. Semantic caching cuts duplicate inference outright.</div>
+        <div class="usecase-outcome">AI costs allocated and capped, not discovered</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-ai">Agent Gateway + MCP Registry</span>
+        <div class="usecase-title">Govern agents and tools, not just prompts</div>
+        <div class="usecase-desc">Kong's Agent Gateway governs LLM, MCP, and agent-to-agent traffic from one control plane; the MCP Registry in Konnect catalogs which tools agents like J.A.R.V.I.S. can call, with identity and authorization on every tool invocation. Agent sprawl becomes an inventory instead of a risk register.</div>
+        <div class="usecase-outcome">2,000 Imagineers' agents — one policy, one catalog</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">Every team building on OpenAI, Claude, or Bedrock calls <b>one Disney-governed endpoint</b> — provider leverage, spend visibility, and brand-safe guardrails without slowing a single product team down.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">OpenAI enterprise agreement · DisneyGPT · J.A.R.V.I.S. (2,000+ Imagineers) · Sora content on Disney+ · Character IP and guest data</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>AI Gateway in front of DisneyGPT's OpenAI calls</b>Turn on logging, token limits, and PII sanitization for one internal tool; show finance the per-team spend report at day 30.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CLOUD & RELIABILITY -->
+  <div class="tab-panel" id="tab-cloud">
+    <div class="panel-header">
+      <div class="panel-kicker">Cloud Platform Foundations · Site Reliability Engineering</div>
+      <h2>ECS today, Kubernetes tomorrow, "Istio or Linkerd" on the roadmap. Fewer people to run it.</h2>
+      <p>Disney+ built its own abstraction layer on Amazon ECS; Hulu's platform ran <b>~800 production deploys a week</b>
+        across hybrid AWS and its own datacenters and was migrating to Kubernetes. Streaming SRE postings now ask for
+        <b>"knowledge of service mesh architectures (Istio, Linkerd)"</b> and a Cloud Platform team governs secure,
+        self-service AWS across US and UK application teams. After ~1,000 job cuts in April 2026, the mandate from the
+        top is explicit: <b>efficiency gains fund the technology reinvestment.</b></p>
+      <div class="force-multiplier">
+        <div class="fm-num">65×</div>
+        <div class="fm-label"><b>faster deployment; 450+ new digital services in six months</b>Cargill on Kong Konnect + AWS</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Backend SRE</span><span class="job-live">Open · May 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/new-york/site-reliability-engineer-ii/391/92175381712" target="_blank" rel="noopener">Site Reliability Engineer II</a></div>
+        <div class="job-loc">📍 New York</div>
+        <div class="job-pain">Supports backend service teams with automation and observability; asks for <strong>"knowledge of service mesh architectures (Istio, Linkerd)"</strong> plus event-driven systems. Mesh is under evaluation for an estate that is still largely ECS — a Kubernetes-only mesh leaves most of it uncovered.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Cloud Platform Foundations</span><span class="job-live">Open · May &amp; Aug 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/santa-monica/senior-software-engineer-cloud-aws-account-management/391/92435935696" target="_blank" rel="noopener">Senior Cloud Platform Engineer — AWS Account Management</a></div>
+        <div class="job-loc">📍 Santa Monica / New York / Glendale</div>
+        <div class="job-pain">Designs <strong>"automation and tooling for secure, compliant self-service AWS usage"</strong> and champions security standards across many application teams and accounts. Consistent ingress, auth, and policy per account is a per-team effort today.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Experiences · SRE</span><span class="job-live">Open · 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/bay-lake/principal-site-reliability-engineer/391/94076766192" target="_blank" rel="noopener">Principal Site Reliability Engineer</a></div>
+        <div class="job-loc">📍 Bay Lake, FL</div>
+        <div class="job-pain">Principal-level reliability ownership for guest-facing park systems that took an <strong>AWS-regional outage on October 20, 2025</strong> straight into wait times and Lightning Lane. Multi-region resilience and traffic control belong in a layer the team can actually operate.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-mesh">Kong Mesh</span>
+        <div class="usecase-title">A service mesh that covers ECS and VMs, not just Kubernetes</div>
+        <div class="usecase-desc">Kong Mesh (built on Kuma, Envoy data plane) runs in universal mode across ECS, EC2, and Kubernetes at once — mTLS, traffic policy, and zero-trust between Disney+'s ECS services and newer Kubernetes workloads with one control plane. Multi-zone by design for the hybrid footprint Hulu brought with it.</div>
+        <div class="usecase-outcome">Zero-trust across the whole estate during the migration, not after</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Konnect · hybrid data planes</span>
+        <div class="usecase-title">Same policy in every AWS account, every region, every cloud</div>
+        <div class="usecase-desc">Konnect's SaaS control plane manages gateway data planes deployed per AWS account or region — including Dedicated Cloud Gateways Kong runs for you. Cloud Platform Foundations defines the golden path once; every application team gets compliant ingress, auth, and rate limiting by default.</div>
+        <div class="usecase-outcome">Self-service AWS that's secure by construction</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-gateway">Kong Gateway · decK &amp; Terraform</span>
+        <div class="usecase-title">Gateway config that lives in the pipeline Disney already runs</div>
+        <div class="usecase-desc">Every route, plugin, and consumer is declarative — reviewed in a PR, applied by decK or the Terraform provider, and drift-checked. Kong Gateway 3.13 ships native OpenTelemetry and PCI DSS 4.0 attestation for Konnect, feeding the Datadog and Grafana stacks Disney's teams already watch.</div>
+        <div class="usecase-outcome">~800 deploys a week with the gateway in the same flow</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Konnect Advanced Analytics</span>
+        <div class="usecase-title">One API SLO view across streaming, parks, and ads</div>
+        <div class="usecase-desc">Latency, error rate, and traffic per service, route, and consumer across every data plane — the shared dashboard for incident response and capacity planning that the SRE roles are each building separately. Export to Datadog, Grafana, or Splunk; keep the cross-org view in Konnect.</div>
+        <div class="usecase-outcome">Fewer bespoke observability platforms to fund</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">A smaller platform team runs <b>one gateway, one mesh, one observability feed</b> across ECS and Kubernetes — instead of a homegrown ingress layer per platform and a mesh decision that only covers half the estate.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">Disney+ ECS services · Hulu hybrid footprint (83K containers) · Multi-account AWS self-service · Guest-facing park systems during regional outages</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>Kong Mesh universal mode across one ECS + one Kubernetes service</b>Demonstrate mTLS and traffic policy spanning both runtimes — the gap Istio/Linkerd leave open.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- IDENTITY & ENTERPRISE -->
+  <div class="tab-panel" id="tab-identity">
+    <div class="panel-header">
+      <div class="panel-kicker">Disney Enterprise Technology · IAM Transformation</div>
+      <h2>Okta, Ping, SailPoint — and thousands of APIs that each enforce identity their own way.</h2>
+      <p>Enterprise Technology is running an <b>IAM Transformation</b> program standardizing on OIDC, OAuth2, SAML, and SCIM,
+        and building directory platforms for <b>"both human and non-human identities."</b> Parks run an SAP core with
+        SAP Integration Suite and API Business Hub; corporate IT integrates ServiceNow through custom APIs; a Security
+        Reliability Engineer maintains <b>runbooks for internal APIs spanning legacy, in-house, and cloud systems.</b>
+        Identity policy exists. Enforcement at every API is the gap.</p>
+      <div class="force-multiplier">
+        <div class="fm-num">Hours</div>
+        <div class="fm-label"><b>saved per API by centralizing authN/authZ in the gateway</b>Yahoo! Japan · 100+ consumer services on Kong</div>
+      </div>
+    </div>
+
+    <div class="section-label">Open roles — what they're being hired to solve</div>
+    <div class="cards-grid">
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Enterprise Technology · IAM</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://jobs.disneycareers.com/job/orlando/senior-platform-engineer-identity-and-access-management/391/74837405056" target="_blank" rel="noopener">Senior Platform Engineer — Identity &amp; Access Management</a></div>
+        <div class="job-loc">📍 Orlando / Seattle / Los Angeles</div>
+        <div class="job-pain">Part of the <strong>IAM Transformation program</strong>: <q>SAML, SCIM, OAuth2, OIDC</q> across Okta, Active Directory, Ping, and SailPoint, with <q>web service/API integration and deployment.</q> Identity standards are set centrally; each API team still wires them up by hand.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Enterprise Technology · Directory</span><span class="job-live">Open · 2026</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/bengaluru/senior-platform-engineer-directory-services/391/99432825936" target="_blank" rel="noopener">Senior Platform Engineer — Directory Services</a></div>
+        <div class="job-loc">📍 Bengaluru, India</div>
+        <div class="job-pain">Owns <strong>"authoritative directory platforms… for both human and non-human identities."</strong> Service-to-service and AI-agent identities are now in scope for enterprise IAM — and they need an enforcement point in the request path, not just a directory entry.</div>
+      </div>
+      <div class="job-card">
+        <div class="job-top"><span class="job-dept">Security Reliability · Compliance</span><span class="job-live">Open</span></div>
+        <div class="job-title"><a href="https://www.disneycareers.com/en/job/orlando/security-reliability-engineer-compliance/391/88276493312" target="_blank" rel="noopener">Security Reliability Engineer, Compliance</a></div>
+        <div class="job-loc">📍 Orlando, FL</div>
+        <div class="job-pain">Maintains <strong>"runbooks specific to internal APIs"</strong> and <q>integrations between legacy, in-house, and cloud-based systems using APIs and SDKs.</q> Compliance evidence for API security is assembled manually across systems with no common control plane.</div>
+      </div>
+    </div>
+
+    <div class="section-label">How Kong maps to it</div>
+    <div class="usecase-grid">
+      <div class="usecase-card">
+        <span class="usecase-product p-identity">OIDC · JWT · mTLS plugins</span>
+        <div class="usecase-title">Enforce Okta and Ping policy at every API — including service-to-service</div>
+        <div class="usecase-desc">Kong's OpenID Connect plugin integrates directly with Okta and Ping; JWT validation, scope and claim checks, and mTLS between services are declared once and applied to every route. Teams stop re-implementing auth middleware; IAM gets a single enforcement point to audit.</div>
+        <div class="usecase-outcome">IAM Transformation becomes enforceable, not advisory</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-identity">Kong Identity</span>
+        <div class="usecase-title">Machine identity for services and AI agents, natively in Konnect</div>
+        <div class="usecase-desc">Kong Identity issues and manages OAuth 2.0 / OIDC credentials for machine-to-machine and agent traffic inside the platform — the "non-human identities" Directory Services is being hired to govern — with rotation, scoping, and revocation tied to the gateway that enforces them.</div>
+        <div class="usecase-outcome">Every service and agent authenticated, scoped, and revocable</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-konnect">Konnect RBAC + SSO</span>
+        <div class="usecase-title">Platform access mapped to Disney's org — through Okta</div>
+        <div class="usecase-desc">Konnect teams and roles map to Okta groups via SSO and SCIM, so Streaming, Experiences, Advertising, and Enterprise Tech each administer their own gateways, catalogs, and analytics within a single tenant — with central audit of who changed what, where.</div>
+        <div class="usecase-outcome">Federated administration, centralized accountability</div>
+      </div>
+      <div class="usecase-card">
+        <span class="usecase-product p-portal">Service Catalog</span>
+        <div class="usecase-title">One inventory across Kong, AWS API Gateway, and SAP</div>
+        <div class="usecase-desc">Service Catalog auto-discovers APIs on Kong data planes and AWS API Gateway, and ingests the rest — SAP API Business Hub, ServiceNow, legacy SOAP — as first-class entries with owners, scorecards, and compliance status. The Compliance SRE's runbooks get a system of record.</div>
+        <div class="usecase-outcome">Audit evidence generated, not assembled</div>
+      </div>
+    </div>
+
+    <div class="summary">
+      <div class="summary-cell">
+        <div class="summary-label">Biggest unlock</div>
+        <div class="summary-text">IAM Transformation gets <b>enforced at every API and every service identity</b>, and compliance evidence is generated from the control plane instead of assembled from runbooks.</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">What it protects</div>
+        <div class="summary-text dim">Okta / Ping / SailPoint standards · Non-human &amp; agent identities · SAP and ServiceNow integrations · Internal API audit posture</div>
+      </div>
+      <div class="summary-cell">
+        <div class="summary-label">Where to start</div>
+        <div class="summary-start"><span class="step">PILOT · 30 DAYS</span><b>OIDC plugin against Okta on a set of internal APIs</b>Centralize authN/authZ for one domain, catalog every API it touches, and hand Compliance an auto-generated inventory.</div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- /content -->
+
+<!-- Proof strip -->
+<section class="proof">
+  <div class="proof-inner">
+    <div class="proof-head">
+      <div>
+        <div class="proof-eyebrow">Consumer-scale proof</div>
+        <h2>Already the API layer for live sports, ticketing, and pay-TV at Disney-sized traffic.</h2>
+      </div>
+      <div class="proof-chips">
+        <span class="chip"><b>Gartner</b> MQ Leader, API Mgmt · 6 consecutive years</span>
+        <span class="chip"><b>Forrester Wave</b> Leader · Q3 2026</span>
+        <span class="chip"><b>600+</b> enterprise customers</span>
+        <span class="chip"><b>44k</b> GitHub stars</span>
+      </div>
+    </div>
+    <div class="quote-grid">
+      <div class="quote-card">
+        <div class="quote-stat">6–7B</div>
+        <div class="quote-stat-label">requests / week in NFL season</div>
+        <p class="quote-text">"The Super Bowl will have between one billion and two billion requests on that day alone."</p>
+        <div class="quote-attr"><span>Jon Kiner · Eng. Manager, Platform</span><b>FanDuel</b></div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stat">+70%</div>
+        <div class="quote-stat-label">API performance · 99.99% availability</div>
+        <p class="quote-text">"The API latency was better than forecasted — and that was thanks to Kong." 200+ APIs, 30% infrastructure savings, 80% faster deployments.</p>
+        <div class="quote-attr"><span>Pay-TV &amp; streaming · Italy</span><b>Sky Italia</b></div>
+      </div>
+      <div class="quote-card">
+        <div class="quote-stat">Billions</div>
+        <div class="quote-stat-label">of secure transactions · millisecond UX</div>
+        <p class="quote-text">"Kong helps us build once and reuse everywhere, which is how we move at the speed of our customers."</p>
+        <div class="quote-attr"><span>Managing Director · 2025 Innovator Award</span><b>United Airlines</b></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer / CTA -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-cta-row">
+      <div class="footer-left">
+        <strong>Bring one API. We'll put Kong in front of it live.</strong>
+        30 minutes, your traffic pattern — a Lightning Lane surge, an ESPN kickoff, an LLM call from DisneyGPT.
+        No slides, no procurement, no NDA required to start.
+      </div>
+      <a href="mailto:disney@kong.com?subject=Kong%20%C3%97%20Disney%20%E2%80%94%20API%20platform%20walkthrough" class="footer-cta">Book a walkthrough →</a>
+    </div>
+    <div class="footer-meta">
+      <span>Kong × The Walt Disney Company · Prepared September 2026 · <a href="mailto:disney@kong.com">disney@kong.com</a></span>
+      <span>Role data from public postings on disneycareers.com. Disney, Disney+, Hulu, and ESPN are trademarks of The Walt Disney Company; used for identification only. No affiliation or endorsement implied.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  function showTab(tabId, btn) {
+    document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+    document.getElementById('tab-' + tabId).classList.add('active');
+    btn.classList.add('active');
+    if (history.replaceState) history.replaceState(null, '', '#' + tabId);
+  }
+  // Deep-link support: /#parks opens that tab
+  (function () {
+    const id = location.hash.replace('#', '');
+    if (!id) return;
+    const btn = document.querySelector('.tab-btn[onclick*="\'' + id + '\'"]');
+    if (btn) showTab(id, btn);
+  })();
+</script>
+</body>
+</html>
